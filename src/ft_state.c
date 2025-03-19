@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 10:13:24 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/01 10:28:27 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/19 09:23:54 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static int	ft_unlock_mutex_fork(t_philo *p)
 	pthread_mutex_unlock(p->r_fork);
 	return (1);
 }
-
-// #include <stdio.h>
 
 /**
  * @brief ft_check_count chech the count to stop the sim

@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:45:14 by fcretin           #+#    #+#             */
-/*   Updated: 2025/02/27 14:35:09 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/01 16:57:36 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_print_param(void)
 	write(2, "Wrong/no arg...\n", 16);
 	write(2, "arg1 = number of philosophers\narg2 = time_to_die\n", 49);
 	write(2, "arg3 = time_to_eat\narg4 = time_to_sleep\n", 40);
-	return (1);
+	return (2);
 }
 
 int	main(int ac, char **av)

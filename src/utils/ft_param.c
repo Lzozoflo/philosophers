@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:28 by fcretin           #+#    #+#             */
-/*   Updated: 2025/02/27 16:42:13 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/10 09:16:01 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static int	ft_atoi_u(const char *str, int *error)
 	*error = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
 		i++;
-	if (str[i] != '+' && (str[i] < '0' || str[i] > '9'))
+	if (str[i] == '-' && (str[i] < '0' || str[i] > '9'))
+		*error = MY_SIG_ERROR;
+	if (str[i] == '+' && !str[i + 1])
 		*error = MY_SIG_ERROR;
 	if (str[i] == '+')
 		i++;

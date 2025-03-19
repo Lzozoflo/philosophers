@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:50:34 by fcretin           #+#    #+#             */
-/*   Updated: 2025/02/28 10:48:59 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/19 09:12:54 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,3 @@ int	ft_init(t_arg *arg, t_philo *p)
 	}
 	return (0);
 }
-
-// if (i == arg->n_philo - 1)
-// 	p[i].b_r_fork = &p[0].b_l_fork;
-// else
-// 	p[i].b_r_fork = &p[i + 1].b_l_fork;

@@ -2,7 +2,7 @@
 
 NAME			=		philo
 CC				=		cc
-CFLAGS			=		-Wall -Wextra -Werror -MMD -MP -g3
+CFLAGS			=		-Wall -Wextra -Werror -MMD -MP -g3 -pthread
 CFLAGSS			=		-Weverything -Wno-padded
 NPD				=		--no-print-directory
 MAKE			:=		$(MAKE) -j $(NPD)
