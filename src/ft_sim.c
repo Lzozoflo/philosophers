@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:13:50 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/19 09:36:01 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/23 11:02:01 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ static void	ft_death_watchers(t_data *data)
 	i = data->arg.n_philo;
 	ft_no_delay(data);
 	j = 0;
-	while (1)
+	if (data->arg.eat_count != 0)
 	{
-		if (ft_watch_time(&data->p[j], data))
-			break ;
-		if (++j == i)
-			j = 0;
+		while (1)
+		{
+			if (ft_watch_time(&data->p[j], data))
+				break ;
+			if (++j == i)
+				j = 0;
+		}
 	}
 	ft_pthread_join(data);
 }

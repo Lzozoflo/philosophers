@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:28 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/10 09:16:01 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/23 11:00:05 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static int	ft_count_param(char **av, t_arg *arg)
 	{
 		arg->eat_count = ft_atoi_u(av[5], &error);
 		if (error == MY_SIG_ERROR)
+			return (1);
+		if (arg->eat_count == 0)
 			return (1);
 	}
 	else
