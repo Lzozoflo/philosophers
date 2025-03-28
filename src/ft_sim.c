@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:13:50 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/23 11:02:01 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/28 12:57:34 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,12 @@ static void	ft_death_watchers(t_data *data)
 	i = data->arg.n_philo;
 	ft_no_delay(data);
 	j = 0;
-	if (data->arg.eat_count != 0)
+	while (1)
 	{
-		while (1)
-		{
-			if (ft_watch_time(&data->p[j], data))
-				break ;
-			if (++j == i)
-				j = 0;
-		}
+		if (ft_watch_time(&data->p[j], data))
+			break ;
+		if (++j == i)
+			j = 0;
 	}
 	ft_pthread_join(data);
 }
@@ -67,7 +64,7 @@ static void	*ft_routine(void *ptr_p)
 	}
 }
 
-void	ft_join_error(t_data *d, int nb_thread_created)
+static void	ft_join_error(t_data *d, int nb_thread_created)
 {
 	int	i;
 
@@ -78,7 +75,7 @@ void	ft_join_error(t_data *d, int nb_thread_created)
 	}
 }
 
-void	ft_one_fail(t_data *d, int i)
+static void	ft_one_fail(t_data *d, int i)
 {
 	pthread_mutex_lock(&d->arg.stop_sim);
 	ft_stop_all(d);

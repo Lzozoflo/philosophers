@@ -10,14 +10,6 @@ RM				=		rm -fr
 AR				=		ar -rcs
 
 
-# Color
-GREEN			=		\033[0;32m
-BLUE			=		\033[0;34m
-RED				=		\033[0;31m
-YELLOW			=		\033[0;33m
-RESET			=		\033[0m
-
-
 #############################################################################################
 #																							#
 #										// Directories										#
@@ -29,6 +21,7 @@ RESET			=		\033[0m
 D_SRC			=		src/
 D_OBJ			=		1object/
 D_INC			=		inc/
+
 
 # Source Directories
 D_UTILIS		=		utils/
@@ -42,16 +35,18 @@ D_UTILIS		=		utils/
 
 INC				=		ft_philo.h
 
+
 SRC				=		main.c					\
 						ft_diogenes_of_sinope.c	\
 						ft_sim.c				\
 						ft_state.c
 
-SRC_UTILS		=		ft_clear.c			\
-						ft_init.c			\
-						ft_param.c			\
-						ft_print_status.c	\
-						ft_sim_utils.c		\
+
+SRC_UTILS		=		ft_clear.c				\
+						ft_init.c				\
+						ft_param.c				\
+						ft_print_status.c		\
+						ft_sim_utils.c			\
 						ft_time.c
 
 
@@ -69,7 +64,6 @@ SRCS			=		$(addprefix $(D_SRC), $(SRC))						\
 
 # Changing all source directories to object directories
 OBJS			=		$(subst $(D_SRC), $(D_OBJ), $(SRCS:.c=.o))
-D_OBJS			=		$(subst $(D_SRC), $(D_OBJ), $(SRCS))
 DEPS			=		$(SRCS:%.c=%.d)
 
 INCS			=		$(addprefix $(D_INC), $(INC))
@@ -85,10 +79,11 @@ INCS			=		$(addprefix $(D_INC), $(INC))
 
 all				:
 			$(MAKE) $(NAME)
-			$(MAKE) $(D_OBJ)
+
 
 $(NAME)			:	$(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
 
 $(D_OBJ)%.o		:	$(D_SRC)%.c $(INCS) Makefile
 			@mkdir -p $(dir $@)
@@ -97,7 +92,7 @@ $(D_OBJ)%.o		:	$(D_SRC)%.c $(INCS) Makefile
 
 #############################################################################################
 #																							#
-#								    // CLEAN  FCLEAN  RE									#
+#									// CLEAN  FCLEAN  RE									#
 #																							#
 #############################################################################################
 
