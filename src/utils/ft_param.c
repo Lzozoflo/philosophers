@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:28 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/23 11:00:05 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/30 15:02:25 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	ft_param(int ac, char **av, t_arg *arg)
 	if (error == MY_SIG_ERROR || arg->n_philo == 0)
 		return (1);
 	arg->tt_die = (__useconds_t)ft_atoi_u(av[2], &error);
-	if (error == MY_SIG_ERROR)
+	if (error == MY_SIG_ERROR || arg->tt_die <= 60)
 		return (1);
 	arg->tt_eat = (__useconds_t)ft_atoi_u(av[3], &error);
-	if (error == MY_SIG_ERROR)
+	if (error == MY_SIG_ERROR || arg->tt_eat <= 60)
 		return (1);
 	arg->tt_sleep = (__useconds_t)ft_atoi_u(av[4], &error);
-	if (error == MY_SIG_ERROR)
+	if (error == MY_SIG_ERROR || arg->tt_sleep <= 60)
 		return (1);
 	if (ft_count_param(av, arg))
 		return (1);

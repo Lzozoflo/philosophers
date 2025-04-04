@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 11:05:00 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/19 11:05:05 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:20:12 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ typedef struct s_philo
 	time_t			last_eat;
 	pthread_mutex_t	eat_lock;
 	pthread_mutex_t	l_fork;
+	int				bl_fork;
 	pthread_mutex_t	*r_fork;
+	int				*br_fork;
 	t_arg			*arg;
 	int				eat_count;
 	__useconds_t	tt_die;
@@ -97,6 +99,13 @@ int		ft_stop_sim(t_philo *p);
 int		ft_watch_time(t_philo *p, t_data *data);
 void	ft_pthread_join(t_data *d);
 void	ft_stop_all(t_data *data);
+
+/*
+ *--------------src/utils/ft_status_utils.c
+*/
+
+int		handle_fork(t_philo *p);
+int		ft_unlock_mutex_fork(t_philo *p);
 
 /*
  *--------------src/utils/ft_time.c

@@ -2,7 +2,7 @@
 
 NAME			=		philo
 CC				=		cc
-CFLAGS			=		-Wall -Wextra -Werror -MMD -MP -O3
+CFLAGS			=		-Wall -Wextra -Werror -MMD -MP -O3 -g3
 CFLAGSS			=		-Weverything -Wno-padded
 NPD				=		--no-print-directory
 MAKE			:=		$(MAKE) -j $(NPD)
@@ -47,6 +47,7 @@ SRC_UTILS		=		ft_clear.c				\
 						ft_param.c				\
 						ft_print_status.c		\
 						ft_sim_utils.c			\
+						ft_status_utils.c		\
 						ft_time.c
 
 

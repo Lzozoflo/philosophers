@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:50:34 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/19 09:12:54 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/03/30 16:50:34 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	ft_mutex_init_p(t_philo *p)
 static void	ft_get_arg(t_arg *arg, t_philo *p)
 {
 	p->arg = arg;
+	p->bl_fork = 1;
 	p->tt_eat = arg->tt_eat;
 	p->tt_die = arg->tt_die;
 	p->tt_sleep = arg->tt_sleep;
@@ -77,9 +78,15 @@ int	ft_init(t_arg *arg, t_philo *p)
 		if (ft_mutex_init_p(&p[i]))
 			return (1);
 		if (i == arg->n_philo - 1)
+		{
+			p[i].br_fork = &p[0].bl_fork;
 			p[i].r_fork = &p[0].l_fork;
+		}
 		else
+		{
+			p[i].br_fork = &p[i + 1].bl_fork;
 			p[i].r_fork = &p[i + 1].l_fork;
+		}
 		i++;
 	}
 	return (0);
