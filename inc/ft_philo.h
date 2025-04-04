@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 11:05:00 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/02 15:20:12 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:01:51 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # define STOP 1
 # define EAT_STOP 2
 # define NO_COUNT -42
+
+# define AVAILABLE 1
+# define UNAVAILABLE 0
 
 typedef enum e_sig
 {
@@ -104,8 +107,8 @@ void	ft_stop_all(t_data *data);
  *--------------src/utils/ft_status_utils.c
 */
 
-int		handle_fork(t_philo *p);
 int		ft_unlock_mutex_fork(t_philo *p);
+void	handle_fork(t_philo *p);
 
 /*
  *--------------src/utils/ft_time.c
@@ -130,6 +133,8 @@ int		ft_start_sim(t_data *d);
 /*
  *--------------src/ft_state.c
  */
+
+void	ft_first_thinking(t_philo *p, time_t timer);
 void	ft_thinking(t_philo *p, time_t timer);
 int		ft_get_fork(t_philo *p, int *count);
 

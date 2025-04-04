@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:13:50 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/02 13:36:46 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:01:43 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	*ft_routine(void *ptr_p)
 	pthread_mutex_unlock(&p->arg->start);
 	if (ft_stop_sim(p))
 		return (0);
-	ft_thinking(p, get_time_in_ms());
+	ft_first_thinking(p, get_time_in_ms());
 	if (p->id % 2 == 0)
 		usleep(1000);
 	while (1)
