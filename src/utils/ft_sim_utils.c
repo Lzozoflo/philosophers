@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:21 by fcretin           #+#    #+#             */
-/*   Updated: 2025/02/28 13:15:35 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:58:19 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief ft_stop_sim check if the simulation need to stop.
  *
  */
-inline int	ft_stop_sim(t_philo *p)
+int	ft_stop_sim(t_philo *p)
 {
 	pthread_mutex_lock(&p->arg->stop_sim);
 	if (p->stop == STOP)
@@ -49,62 +49,38 @@ inline void	ft_stop_all(t_data *data)
 }
 
 /**
- * @brief ft_all_end_count_eat Check if all philo finish to eat.
- *
- */
-static inline int	ft_is_all_eat_stop(t_data *data)
-{
-	unsigned int	j;
-	unsigned int	i;
-
-	i = data->arg.n_philo;
-	j = 0;
-	while (1)
-	{
-		if (data->p[j].stop != EAT_STOP)
-		{
-			pthread_mutex_unlock(&data->arg.stop_sim);
-			return (START_CONTINUE);
-		}
-		if (++j == i)
-			break ;
-	}
-	ft_stop_all(data);
-	return (STOP);
-}
-
-/**
  * @brief ft_watch_time Check the time of death was not over
  *			and if its was because they stop on the count eat
  *			is not printing the death status is just waiting all stop.
  */
 int	ft_watch_time(t_philo *p, t_data *data)
 {
+	time_t	timer;
+
 	pthread_mutex_lock(&data->arg.stop_sim);
-	if (p->stop == EAT_STOP)
+	if (p->arg->has_eat == p->arg->n_philo)
 	{
-		if (ft_is_all_eat_stop(data) == STOP)
-			return (STOP);
-		return (START_CONTINUE);
+		ft_stop_all(data);
+		return (STOP);
 	}
 	pthread_mutex_unlock(&data->arg.stop_sim);
-	pthread_mutex_lock(&p->eat_lock);
+	pthread_mutex_lock(&data->arg.eat_lock);
 	if (get_time_in_ms() - p->last_eat > data->arg.tt_die)
 	{
 		pthread_mutex_lock(&data->arg.stop_sim);
-		pthread_mutex_unlock(&p->eat_lock);
+		pthread_mutex_unlock(&data->arg.eat_lock);
 		ft_stop_all(data);
 		ft_usleep(get_time_in_ms(), 1);
-		ft_status(p, DIED, get_time_in_ms());
+		ft_status(p, DIED, &timer);
 		return (STOP);
 	}
-	pthread_mutex_unlock(&p->eat_lock);
+	pthread_mutex_unlock(&data->arg.eat_lock);
 	return (START_CONTINUE);
 }
 
 void	ft_pthread_join(t_data *d)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	while (i < d->arg.n_philo)

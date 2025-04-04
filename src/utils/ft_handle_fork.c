@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:50:35 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 11:58:47 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:52:58 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ int	ft_unlock_mutex_fork(t_philo *p)
 
 static void	ft_taken_fork(t_philo *p, pthread_mutex_t *m_fork, int *b_fork)
 {
+	time_t	timer;
+
 	while (1)
 	{
 		pthread_mutex_lock(m_fork);
 		if (*b_fork == AVAILABLE)
 		{
-			ft_status(p, FORK, get_time_in_ms());
+			ft_status(p, FORK, &timer);
 			*b_fork = UNAVAILABLE;
 			pthread_mutex_unlock(m_fork);
 			break ;

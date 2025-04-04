@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 11:05:00 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 12:01:51 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:57:09 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include <pthread.h>
 # define MY_SIG_ERROR 1
+
 # define START_CONTINUE 0
 # define STOP 1
-# define EAT_STOP 2
+
 # define NO_COUNT -42
 
 # define AVAILABLE 1
@@ -34,9 +35,11 @@ typedef enum e_sig
 
 typedef struct s_arg
 {
-	unsigned int	n_philo;
+	int				n_philo;
 	int				eat_count;
+	int				has_eat;
 	time_t			start_time;
+	pthread_mutex_t	eat_lock;
 	pthread_mutex_t	start;
 	pthread_mutex_t	stop_sim;
 	pthread_mutex_t	write_lock;
@@ -47,15 +50,15 @@ typedef struct s_arg
 
 typedef struct s_philo
 {
-	pthread_t		thread_id;
 	unsigned int	id;
-	int				stop;
-	time_t			last_eat;
-	pthread_mutex_t	eat_lock;
+	pthread_t		thread_id;
 	pthread_mutex_t	l_fork;
 	int				bl_fork;
 	pthread_mutex_t	*r_fork;
 	int				*br_fork;
+	int				stop;
+	time_t			last_eat;
+	// pthread_mutex_t	eat_lock;
 	t_arg			*arg;
 	int				eat_count;
 	__useconds_t	tt_die;
@@ -92,7 +95,7 @@ int		ft_param(int ac, char **av, t_arg *arg);
  *--------------src/utils/ft_print_status.c
  */
 
-void	ft_status(t_philo *p, t_sig signal, time_t timer);
+void	ft_status(t_philo *p, t_sig signal, time_t *timer);
 
 /*
 *--------------src/utils/ft_sim_utils.c
@@ -134,8 +137,9 @@ int		ft_start_sim(t_data *d);
  *--------------src/ft_state.c
  */
 
-void	ft_first_thinking(t_philo *p, time_t timer);
-void	ft_thinking(t_philo *p, time_t timer);
+void	ft_first_thinking(t_philo *p);
+void	ft_thinking(t_philo *p);
+void	ft_sleeping(t_philo *p);
 int		ft_get_fork(t_philo *p, int *count);
 
 #endif
