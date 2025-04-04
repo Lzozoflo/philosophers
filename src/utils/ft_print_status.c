@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 09:29:18 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 14:59:03 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:02:22 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	ft_status(t_philo *p, t_sig signal, time_t *timer)
 	pthread_mutex_unlock(&p->arg->write_lock);
 	if (signal == EATING)
 	{
-		pthread_mutex_lock(&p->arg->eat_lock);
+		pthread_mutex_lock(&p->eat_lock);
 		p->last_eat = *timer;
-		pthread_mutex_unlock(&p->arg->eat_lock);
+		pthread_mutex_unlock(&p->eat_lock);
 	}
 }

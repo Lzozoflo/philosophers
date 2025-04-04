@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:50:34 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 14:57:50 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:02:34 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static int	ft_mutex_init_arg(t_arg *arg)
 		return (1);
 	if (pthread_mutex_init(&arg->write_lock, NULL))
 		return (1);
-	if (pthread_mutex_init(&arg->eat_lock, NULL))
-		return (1);
 	return (0);
 }
 
@@ -37,8 +35,8 @@ static int	ft_mutex_init_arg(t_arg *arg)
 static int	ft_mutex_init_p(t_philo *p)
 {
 	p->r_fork = NULL;
-	// if (pthread_mutex_init(&p->eat_lock, NULL))
-	// 	return (1);
+	if (pthread_mutex_init(&p->eat_lock, NULL))
+		return (1);
 	if (pthread_mutex_init(&p->l_fork, NULL))
 		return (1);
 	p->stop = START_CONTINUE;

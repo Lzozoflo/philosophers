@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 11:05:00 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 14:57:09 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:03:00 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_arg
 	int				eat_count;
 	int				has_eat;
 	time_t			start_time;
-	pthread_mutex_t	eat_lock;
+	// pthread_mutex_t	eat_lock;
 	pthread_mutex_t	start;
 	pthread_mutex_t	stop_sim;
 	pthread_mutex_t	write_lock;
@@ -58,7 +58,7 @@ typedef struct s_philo
 	int				*br_fork;
 	int				stop;
 	time_t			last_eat;
-	// pthread_mutex_t	eat_lock;
+	pthread_mutex_t	eat_lock;
 	t_arg			*arg;
 	int				eat_count;
 	__useconds_t	tt_die;

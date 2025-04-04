@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:21 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 14:58:19 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:03:11 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ int	ft_watch_time(t_philo *p, t_data *data)
 		return (STOP);
 	}
 	pthread_mutex_unlock(&data->arg.stop_sim);
-	pthread_mutex_lock(&data->arg.eat_lock);
+	pthread_mutex_lock(&p->eat_lock);
 	if (get_time_in_ms() - p->last_eat > data->arg.tt_die)
 	{
 		pthread_mutex_lock(&data->arg.stop_sim);
-		pthread_mutex_unlock(&data->arg.eat_lock);
+		pthread_mutex_unlock(&p->eat_lock);
 		ft_stop_all(data);
 		ft_usleep(get_time_in_ms(), 1);
 		ft_status(p, DIED, &timer);
 		return (STOP);
 	}
-	pthread_mutex_unlock(&data->arg.eat_lock);
+	pthread_mutex_unlock(&p->eat_lock);
 	return (START_CONTINUE);
 }
 
