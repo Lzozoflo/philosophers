@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:21 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 14:58:19 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:08:38 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	ft_stop_sim(t_philo *p)
  */
 inline void	ft_stop_all(t_data *data)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
+	int	j;
 
 	i = data->arg.n_philo;
 	j = 0;
@@ -84,8 +84,6 @@ void	ft_pthread_join(t_data *d)
 
 	i = 0;
 	while (i < d->arg.n_philo)
-	{
 		pthread_join(d->p[i++].thread_id, NULL);
-	}
-	ft_clear(d, 1);
+	ft_clear(d, 0);
 }

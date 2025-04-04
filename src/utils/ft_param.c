@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:48:28 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/30 15:02:25 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:10:13 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_param(int ac, char **av, t_arg *arg)
 
 	if (ac < 5 || ac > 6)
 		return (1);
-	arg->n_philo = (unsigned int)ft_atoi_u(av[1], &error);
+	arg->n_philo = ft_atoi_u(av[1], &error);
 	if (error == MY_SIG_ERROR || arg->n_philo == 0)
 		return (1);
 	arg->tt_die = (__useconds_t)ft_atoi_u(av[2], &error);

@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 10:13:24 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 14:56:40 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:45:33 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ inline void	ft_thinking(t_philo *p)
 	time_t	timer;
 
 	ft_status(p, THINKING, &timer);
+	usleep(200);
 	if (p->arg->n_philo % 2 != 0)
 		ft_usleep(timer, p->tt_eat);
 }
 
 /**
- * @brief
- *
- *		and print the status to simulate a philosophe sleeping.
+ * @brief print the status and simulate a philosophe sleeping.
  */
-void	ft_sleeping(t_philo *p)
+inline void	ft_sleeping(t_philo *p)
 {
 	time_t	timer;
 

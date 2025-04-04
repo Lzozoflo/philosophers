@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:13:50 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 15:34:21 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:09:24 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	ft_one_fail(t_data *d, int i)
  */
 static void	ft_death_watchers(t_data *data)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
+	int	j;
 
 	i = data->arg.n_philo;
 	ft_no_delay(data);

@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:01:38 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 12:21:21 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:46:47 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	ft_usleep(time_t time, __useconds_t tt_some)
 {
 	time += tt_some;
 	while (get_time_in_ms() < time)
-		usleep(320);
+		usleep(100);
 }

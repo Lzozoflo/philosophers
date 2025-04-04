@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:50:34 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 14:57:50 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:05:46 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,24 @@
 static int	ft_mutex_init_arg(t_arg *arg)
 {
 	arg->has_eat = 0;
+	arg->start_time = get_time_in_ms() + (arg->n_philo * 10);
 	if (pthread_mutex_init(&arg->start, NULL))
 		return (1);
 	if (pthread_mutex_init(&arg->stop_sim, NULL))
+	{
+		ft_mutex_destroy_arg(arg, 1);
 		return (1);
+	}
 	if (pthread_mutex_init(&arg->write_lock, NULL))
+	{
+		ft_mutex_destroy_arg(arg, 2);
 		return (1);
+	}
 	if (pthread_mutex_init(&arg->eat_lock, NULL))
+	{
+		ft_mutex_destroy_arg(arg, 3);
 		return (1);
-	return (0);
-}
-
-/**
- * @brief ft_mutex_init init the t_philo mutex.
- *
- */
-static int	ft_mutex_init_p(t_philo *p)
-{
-	p->r_fork = NULL;
-	// if (pthread_mutex_init(&p->eat_lock, NULL))
-	// 	return (1);
-	if (pthread_mutex_init(&p->l_fork, NULL))
-		return (1);
-	p->stop = START_CONTINUE;
+	}
 	return (0);
 }
 
@@ -63,23 +58,35 @@ static void	ft_get_arg(t_arg *arg, t_philo *p)
 }
 
 /**
+ * @brief ft_mutex_init init the t_philo mutex.
+ *
+ */
+static int	ft_mutex_init_p(t_arg *arg, t_philo *p)
+{
+	ft_get_arg(arg, p);
+	p->r_fork = NULL;
+	if (pthread_mutex_init(&p->l_fork, NULL))
+		return (1);
+	p->stop = START_CONTINUE;
+	return (0);
+}
+
+/**
  * @brief initializes all the philosophers their values and the mutexes.
  *
  */
-int	ft_init(t_arg *arg, t_philo *p)
+int	ft_init(t_arg *arg, t_philo *p, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	if (ft_mutex_init_arg(arg))
 		return (1);
-	arg->start_time = get_time_in_ms() + (arg->n_philo * 10);
 	while (i < arg->n_philo)
 	{
 		p[i].id = i + 1;
-		ft_get_arg(arg, &p[i]);
-		if (ft_mutex_init_p(&p[i]))
-			return (1);
+		if (ft_mutex_init_p(arg, &p[i]))
+			return (ft_clear(data, i));
 		if (i == arg->n_philo - 1)
 		{
 			p[i].br_fork = &p[0].bl_fork;

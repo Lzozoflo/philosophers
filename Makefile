@@ -37,17 +37,17 @@ INC				=		ft_philo.h
 
 
 SRC				=		main.c					\
+						ft_init.c				\
 						ft_diogenes_of_sinope.c	\
 						ft_sim.c				\
 						ft_state.c
 
 
 SRC_UTILS		=		ft_clear.c				\
-						ft_init.c				\
+						ft_handle_fork.c		\
 						ft_param.c				\
 						ft_print_status.c		\
 						ft_sim_utils.c			\
-						ft_handle_fork.c		\
 						ft_time.c
 
 
