@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 11:05:00 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 17:13:35 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 18:25:22 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	ft_stop_all(t_data *data);
 
 time_t	get_time_in_ms(void);
 void	ft_no_delay(t_data *data);
-void	ft_usleep(time_t time, __useconds_t tt_some);
+void	ft_usleep(time_t time, __useconds_t tt_some, t_philo *p);
 
 /*
  *--------------src/ft_diogenes_of_sinope.c

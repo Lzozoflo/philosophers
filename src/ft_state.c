@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 10:13:24 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 17:45:33 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 18:40:18 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ inline void	ft_thinking(t_philo *p)
 	ft_status(p, THINKING, &timer);
 	usleep(200);
 	if (p->arg->n_philo % 2 != 0)
-		ft_usleep(timer, p->tt_eat);
+		ft_usleep(timer, p->tt_eat, p);
 }
 
 /**
@@ -49,9 +49,7 @@ inline void	ft_sleeping(t_philo *p)
 	time_t	timer;
 
 	ft_status(p, SLEEPING, &timer);
-	if (ft_stop_sim(p))
-		return ;
-	ft_usleep(timer, p->tt_sleep);
+	ft_usleep(timer, p->tt_sleep, p);
 }
 
 /**
@@ -78,7 +76,7 @@ int	ft_get_fork(t_philo *p, int *count)
 	if (ft_stop_sim(p) == STOP)
 		return (ft_unlock_mutex_fork(p));
 	ft_status(p, EATING, &timer);
-	ft_usleep(timer, p->tt_eat);
+	ft_usleep(timer, p->tt_eat, p);
 	ft_check_count(p, count);
 	if (ft_stop_sim(p) == STOP)
 		return (ft_unlock_mutex_fork(p));
