@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:13:50 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 18:24:41 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/05 08:46:00 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	ft_death_watchers(t_data *data)
 		if (++j == i)
 			j = 0;
 		usleep(100);
-
 	}
 	ft_pthread_join(data);
 }
@@ -80,6 +79,8 @@ static void	*ft_routine(void *ptr_p)
 	while (1)
 	{
 		if (ft_get_fork(p, &count))
+			return (0);
+		if (ft_stop_sim(p))
 			return (0);
 		ft_sleeping(p);
 		if (ft_stop_sim(p))

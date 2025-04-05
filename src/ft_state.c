@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 10:13:24 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 18:40:18 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/05 08:43:58 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static inline void	ft_check_count(t_philo *p, int *count)
 		pthread_mutex_lock(&p->arg->stop_sim);
 		p->arg->has_eat++;
 		pthread_mutex_unlock(&p->arg->stop_sim);
+		usleep(500);
 	}
 }
 
@@ -78,8 +79,6 @@ int	ft_get_fork(t_philo *p, int *count)
 	ft_status(p, EATING, &timer);
 	ft_usleep(timer, p->tt_eat, p);
 	ft_check_count(p, count);
-	if (ft_stop_sim(p) == STOP)
-		return (ft_unlock_mutex_fork(p));
 	ft_unlock_mutex_fork(p);
 	return (0);
 }
