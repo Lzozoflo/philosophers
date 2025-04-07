@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:50:35 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 14:52:58 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 18:45:30 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void	ft_taken_fork(t_philo *p, pthread_mutex_t *m_fork, int *b_fork)
 		{
 			pthread_mutex_unlock(m_fork);
 		}
+		usleep(50);
 	}
 }
 
@@ -80,4 +81,3 @@ void	handle_fork(t_philo *p)
 		ft_taken_fork(p, &p->l_fork, &p->bl_fork);
 	}
 }
-

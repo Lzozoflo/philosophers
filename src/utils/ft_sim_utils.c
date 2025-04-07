@@ -6,11 +6,12 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:21 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 15:03:11 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/07 08:07:26 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
+#include <unistd.h>
 
 /**
  * @brief ft_stop_sim check if the simulation need to stop.
@@ -34,8 +35,8 @@ int	ft_stop_sim(t_philo *p)
  */
 inline void	ft_stop_all(t_data *data)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
+	int	j;
 
 	i = data->arg.n_philo;
 	j = 0;
@@ -70,7 +71,7 @@ int	ft_watch_time(t_philo *p, t_data *data)
 		pthread_mutex_lock(&data->arg.stop_sim);
 		pthread_mutex_unlock(&p->eat_lock);
 		ft_stop_all(data);
-		ft_usleep(get_time_in_ms(), 1);
+		usleep(1000);
 		ft_status(p, DIED, &timer);
 		return (STOP);
 	}
@@ -84,8 +85,6 @@ void	ft_pthread_join(t_data *d)
 
 	i = 0;
 	while (i < d->arg.n_philo)
-	{
 		pthread_join(d->p[i++].thread_id, NULL);
-	}
-	ft_clear(d, 1);
+	ft_clear(d, 0);
 }

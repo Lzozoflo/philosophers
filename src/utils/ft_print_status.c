@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 09:29:18 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/04 15:02:22 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/07 08:07:44 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * 			check if the sim was end if its was end we dont we the put
  * 			or put timestamp_in_ms X status.
  */
-static void	ft_put_status(time_t time, unsigned int id, char *str, t_philo *p)
+static void	ft_put_status(time_t time, int id, char *str, t_philo *p)
 {
 	if (ft_stop_sim(p))
 		return ;
@@ -29,7 +29,7 @@ static void	ft_put_status(time_t time, unsigned int id, char *str, t_philo *p)
  * @brief ft_put_died everytime a philosopher do something
  * 			put timestamp_in_ms X status.
  */
-static int	ft_put_died(time_t time, unsigned int id, char *str)
+static int	ft_put_died(time_t time, int id, char *str)
 {
 	printf("%ld %d %s", time, id, str);
 	return (0);

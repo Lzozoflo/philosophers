@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:45:14 by fcretin           #+#    #+#             */
-/*   Updated: 2025/03/23 11:04:52 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:08:55 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	main(int ac, char **av)
 	data.p = NULL;
 	if (ft_param(ac, av, &data.arg))
 		return (ft_print_param());
-	data.p = malloc(sizeof(t_philo) * data.arg.n_philo);
+	data.p = malloc(sizeof(t_philo) * (size_t)data.arg.n_philo);
 	if (!data.p)
 		return (1);
-	if (ft_init(&data.arg, data.p))
+	if (ft_init(&data.arg, data.p, &data))
 		return (1);
 	if (ft_start_sim(&data))
 		return (1);
